@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dayanal & Raina - Royal Wedding Invitation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Noto+Serif+Malayalam:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#fbf7eb',
+                            200: '#f4e6c3',
+                            300: '#e5cd8d',
+                            400: '#d4af37',
+                            500: '#c5a059',
+                            600: '#a8853f',
+                            700: '#8c6d2d',
+                            800: '#695120',
+                            900: '#4a3710'
+                        },
+                        church: {
+                            purple: '#5e326d',
+                            red: '#9b332b',
+                            stone: '#595048'
+                        },
+                        sepia: {
+                            100: '#fcfaf7',
+                            800: '#3a2d25',
+                            900: '#231913'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                        ml: ['"Noto Serif Malayalam"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #f1f5f9;
+            color: #231913;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sky Watercolor Background */
+        .sky-background {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 50% 20%, rgba(200, 220, 240, 0.9) 0%, rgba(225, 238, 248, 0.7) 40%, rgba(250, 247, 240, 0.95) 85%),
+                radial-gradient(ellipse at 15% 35%, rgba(180, 210, 235, 0.5) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 35%, rgba(180, 210, 235, 0.5) 0%, transparent 60%);
+            z-index: -2;
+        }
+
+        .elegant-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+        }
+
+        /* Royal Invitation Card Container */
+        .royal-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 2px solid #d4af37;
+            box-shadow: 0 35px 80px -15px rgba(94, 50, 109, 0.25), inset 0 0 100px rgba(212, 175, 55, 0.08);
+            position: relative;
+        }
+
+        .royal-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.6);
+            pointer-events: none;
+            border-radius: 0.85rem;
+            z-index: 5;
+        }
+
+        /* Background Layer for St. Joseph's Church Illustration */
+        .church-photo-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.38;
+            overflow: hidden;
+        }
+
+        /* Content Layer above Church Illustration */
+        .content-layer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Floating Petal Animation */
+        @keyframes floatPetal {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.85; }
+            85% { opacity: 0.85; }
+            100% { transform: translateY(105vh) translateX(70px) rotate(360deg); opacity: 0; }
+        }
+
+        .petal {
+            position: fixed;
+            top: -10vh;
+            background: radial-gradient(circle at 30% 30%, #f7d5cc, #e5a89b);
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 40;
+            box-shadow: 0 0 10px rgba(229, 168, 155, 0.3);
+            animation: floatPetal linear infinite;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #8c6d2d 0%, #d4af37 50%, #695120 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            box-shadow: 0 8px 20px -4px rgba(0,0,0,0.08);
+        }
+
+        /* Corner Filigree SVG */
+        .corner-filigree {
+            position: absolute;
+            width: 65px;
+            height: 65px;
+            pointer-events: none;
+            z-index: 15;
+        }
+
+        /* High Legibility Frosted Glass Containers */
+        .frosted-box {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.45);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 sm:py-10 relative">
+
+    <!-- Sky Background -->
+    <div class="sky-background"></div>
+
+    <!-- Floating Flower Petals -->
+    <div id="petal-container" class="pointer-events-none"></div>
+    <script>
+        const container = document.getElementById('petal-container');
+        for (let i = 0; i < 22; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = (Math.random() * 12 + 10) + 'px';
+            petal.style.height = (Math.random() * 18 + 12) + 'px';
+            petal.style.animationDuration = (Math.random() * 8 + 6) + 's';
+            petal.style.animationDelay = (Math.random() * 6) + 's';
+            container.appendChild(petal);
+        }
+    </script>
+
+    <header class="fixed top-3 sm:top-5 right-3 sm:right-6 z-50 flex items-center gap-2.5">
+        <!-- Language Switcher -->
+        <div class="glass-btn px-3 py-2 rounded-full flex items-center gap-2 text-xs text-gold-800 font-semibold shadow-md">
+            <i class="fa-solid fa-globe text-gold-600"></i>
+            <select id="language-select" onchange="changeLanguage(this.value)" class="bg-transparent border-none text-xs text-gold-900 font-bold focus:outline-none cursor-pointer">
+                <option value="en">English</option>
+                <option value="ml">മലയാളം</option>
+            </select>
+        </div>
+        <!-- Audio Toggle -->
+        <button id="audio-control" class="glass-btn px-4 py-2.5 rounded-full cursor-pointer hover:bg-gold-500/10 transition flex items-center gap-2 text-xs text-gold-800 font-semibold shadow-md">
+            <i id="audio-icon" class="fa-solid fa-music text-sm text-gold-600"></i>
+            <span id="audio-text" class="hidden sm:inline" data-en="Play Music 🎵" data-ml="സംഗീതം പ്ലേ ചെയ്യുക 🎵">Play Music 🎵</span>
+            <audio id="bg-music" loop crossorigin="anonymous" preload="auto">
+                <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-ragtime-112187.mp3" type="audio/mpeg">
+            </audio>
+        </button>
+    </header>
+
+    <main class="w-full max-w-2xl royal-card rounded-2xl p-5 sm:p-12 my-6 relative shadow-2xl overflow-hidden">
+
+        <!-- ST. JOSEPH'S CHURCH ACCURATE SVG BACKGROUND (MATCHING IMG_8043_1d6164.jpeg) -->
+        <div class="church-photo-bg">
+            <svg viewBox="0 0 600 1100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full preserve-aspect">
+                <!-- Sky & Cloud background fill -->
+                <rect x="0" y="0" width="600" height="1100" fill="#e2edf8" opacity="0.5"/>
+                
+                <!-- Background Mountain Hills -->
+                <path d="M0 320 Q 150 180, 300 280 T 600 240 V 1100 H 0 Z" fill="#8b9e82" opacity="0.3"/>
+                <path d="M0 380 Q 200 280, 450 350 T 600 310 V 1100 H 0 Z" fill="#6b8462" opacity="0.35"/>
+
+                <!-- Main Church Structure Base Wall (White) -->
+                <!-- Center Tower -->
+                <rect x="190" y="220" width="220" height="420" fill="#ffffff" stroke="#5e326d" stroke-width="4"/>
+                <!-- Left Wing -->
+                <rect x="50" y="320" width="140" height="320" fill="#ffffff" stroke="#5e326d" stroke-width="4"/>
+                <!-- Right Wing -->
+                <rect x="410" y="320" width="140" height="320" fill="#ffffff" stroke="#5e326d" stroke-width="4"/>
+
+                <!-- Purple Corner Trim Columns -->
+                <rect x="45" y="320" width="15" height="320" fill="#5e326d"/>
+                <rect x="185" y="220" width="15" height="420" fill="#5e326d"/>
+                <rect x="400" y="220" width="15" height="420" fill="#5e326d"/>
+                <rect x="540" y="320" width="15" height="320" fill="#5e326d"/>
+
+                <!-- Dark Grey Slate Side Curved Roofing Walls -->
+                <path d="M 190 340 C 190 480, 100 520, 50 560 V 360 L 190 340 Z" fill="#4a535e"/>
+                <path d="M 410 340 C 410 480, 500 520, 550 560 V 360 L 410 340 Z" fill="#4a535e"/>
+
+                <!-- Red Terracotta Roof Slopes -->
+                <!-- Top Center Roof -->
+                <polygon points="160,220 440,220 420,185 180,185" fill="#9b332b" stroke="#681f19" stroke-width="3"/>
+                <!-- Left Wing Roof -->
+                <polygon points="20,320 210,320 195,295 35,295" fill="#9b332b" stroke="#681f19" stroke-width="3"/>
+                <!-- Right Wing Roof -->
+                <polygon points="390,320 580,320 565,295 405,295" fill="#9b332b" stroke="#681f19" stroke-width="3"/>
+                <!-- Lower Portico Main Roof Slope -->
+                <polygon points="10,640 590,640 540,570 60,570" fill="#9b332b" stroke="#681f19" stroke-width="4"/>
+
+                <!-- Cross atop Main Steeple -->
+                <rect x="291" y="105" width="18" height="80" fill="#ffffff" stroke="#5e326d" stroke-width="2"/>
+                <rect x="260" y="130" width="80" height="18" fill="#ffffff" stroke="#5e326d" stroke-width="2"/>
+
+                <!-- Statue Niche in Upper Center -->
+                <path d="M 260 320 V 270 A 40 40 0 0 1 340 270 V 320 Z" fill="#2d1c3a" stroke="#5e326d" stroke-width="3"/>
+                <!-- Saint Joseph with Infant Jesus Statue Silhouette -->
+                <circle cx="300" cy="265" r="9" fill="#e8c39e"/>
+                <path d="M 290 278 Q 300 270, 310 278 V 315 H 290 Z" fill="#2a629a"/>
+                <circle cx="312" cy="275" r="5" fill="#e8c39e"/>
+
+                <!-- Stained Glass Gothic Windows (Left Wing) -->
+                <path d="M 90 430 V 370 A 30 30 0 0 1 150 370 V 430 Z" fill="#1e3a8a" stroke="#5e326d" stroke-width="4"/>
+                <path d="M 90 370 A 30 30 0 0 1 120 340 V 385 Z" fill="#eab308"/>
+                <path d="M 120 340 A 30 30 0 0 1 150 370 V 385 Z" fill="#2563eb"/>
+
+                <!-- Stained Glass Gothic Windows (Right Wing) -->
+                <path d="M 450 430 V 370 A 30 30 0 0 1 510 370 V 430 Z" fill="#1e3a8a" stroke="#5e326d" stroke-width="4"/>
+                <path d="M 450 370 A 30 30 0 0 1 480 340 V 385 Z" fill="#eab308"/>
+                <path d="M 480 340 A 30 30 0 0 1 510 370 V 385 Z" fill="#2563eb"/>
+
+                <!-- Ground Level Veranda Portico Pillars -->
+                <rect x="30" y="640" width="540" height="180" fill="#ffffff" stroke="#5e326d" stroke-width="3"/>
+                <rect x="130" y="650" width="30" height="170" fill="#88929a"/>
+                <rect x="360" y="650" width="30" height="170" fill="#88929a"/>
+                <!-- Double Doors in Center Portico -->
+                <rect x="250" y="650" width="100" height="170" fill="#5a3118" stroke="#3d210f" stroke-width="3"/>
+
+                <!-- Red & Black Courtyard Paving Lines -->
+                <rect x="0" y="820" width="600" height="280" fill="#ba483b"/>
+                <polygon points="0,820 120,820 70,1100 0,1100" fill="#3a404a"/>
+                <polygon points="180,820 300,820 280,1100 160,1100" fill="#3a404a"/>
+                <polygon points="360,820 480,820 460,1100 340,1100" fill="#3a404a"/>
+
+                <!-- ICONIC STONE CROSS MONUMENT IN FRONT (Exact Match from Image) -->
+                <g id="central-stone-cross">
+                    <!-- Octagonal Carved Pedestal Base -->
+                    <polygon points="210,880 390,880 410,950 190,950" fill="#823c34" stroke="#4a1e19" stroke-width="3"/>
+                    <rect x="230" y="845" width="140" height="35" fill="#a1493f" stroke="#4a1e19" stroke-width="2"/>
+                    
+                    <!-- Large Carved Stone Cross -->
+                    <!-- Vertical Pillar -->
+                    <rect x="278" y="470" width="44" height="400" fill="#605751" stroke="#3b3531" stroke-width="3"/>
+                    <!-- Horizontal Arm -->
+                    <rect x="200" y="520" width="200" height="44" fill="#605751" stroke="#3b3531" stroke-width="3"/>
+                    <!-- Cross Flared Ends -->
+                    <path d="M 190 510 H 200 V 574 H 190 Z" fill="#4d4641"/>
+                    <path d="M 400 510 H 410 V 574 H 400 Z" fill="#4d4641"/>
+                    <path d="M 270 460 V 470 H 330 V 460 Z" fill="#4d4641"/>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Corner Ornaments -->
+        <svg class="corner-filigree top-2 left-2" viewBox="0 0 100 100" fill="none" stroke="#d4af37" stroke-width="2">
+            <path d="M 5 5 L 45 5 M 5 5 L 5 45 M 12 12 L 35 12 M 12 12 L 12 35 M 5 5 C 25 25 35 15 45 25 C 30 25 25 30 25 45 M 18 18 C 30 30 35 22 40 30"/>
+            <circle cx="8" cy="8" r="3" fill="#d4af37"/>
+        </svg>
+        <svg class="corner-filigree top-2 right-2 transform scale-x-[-1]" viewBox="0 0 100 100" fill="none" stroke="#d4af37" stroke-width="2">
+            <path d="M 5 5 L 45 5 M 5 5 L 5 45 M 12 12 L 35 12 M 12 12 L 12 35 M 5 5 C 25 25 35 15 45 25 C 30 25 25 30 25 45 M 18 18 C 30 30 35 22 40 30"/>
+            <circle cx="8" cy="8" r="3" fill="#d4af37"/>
+        </svg>
+        <svg class="corner-filigree bottom-2 left-2 transform scale-y-[-1]" viewBox="0 0 100 100" fill="none" stroke="#d4af37" stroke-width="2">
+            <path d="M 5 5 L 45 5 M 5 5 L 5 45 M 12 12 L 35 12 M 12 12 L 12 35 M 5 5 C 25 25 35 15 45 25 C 30 25 25 30 25 45 M 18 18 C 30 30 35 22 40 30"/>
+            <circle cx="8" cy="8" r="3" fill="#d4af37"/>
+        </svg>
+        <svg class="corner-filigree bottom-2 right-2 transform scale-[-1]" viewBox="0 0 100 100" fill="none" stroke="#d4af37" stroke-width="2">
+            <path d="M 5 5 L 45 5 M 5 5 L 5 45 M 12 12 L 35 12 M 12 12 L 12 35 M 5 5 C 25 25 35 15 45 25 C 30 25 25 30 25 45 M 18 18 C 30 30 35 22 40 30"/>
+            <circle cx="8" cy="8" r="3" fill="#d4af37"/>
+        </svg>
+
+        <div class="content-layer">
+            
+            <!-- Top Cross Crest & Bible Verse -->
+            <div class="text-center mb-6 relative pt-2">
+                <div class="flex justify-center items-center gap-3 text-gold-600 mb-3">
+                    <i class="fa-solid fa-cross text-3xl gold-gradient-text drop-shadow-xs"></i>
+                </div>
+                
+                <!-- Bible Verse Box -->
+                <div class="max-w-lg mx-auto p-4 sm:p-5 rounded-xl frosted-box shadow-xs">
+                    <p class="elegant-title font-semibold italic text-xs sm:text-base text-sepia-900 leading-relaxed tracking-wider" data-en='“SO THEY ARE NO LONGER TWO, BUT ONE FLESH, THEREFORE WHAT GOD HAS JOINED TOGETHER, LET NO ONE SEPARATE.”' data-ml='“അതിനാൽ അവർ ഇനി രണ്ടല്ല, ഒരു ശരീരമത്രേ. ആകയാൽ ദൈവം യോജിപ്പിച്ചതിനെ മനുഷ്യൻ വേർപെടുത്താതിരിക്കട്ടെ.”'>
+                        “SO THEY ARE NO LONGER TWO, BUT ONE FLESH, THEREFORE WHAT GOD HAS JOINED TOGETHER, LET NO ONE SEPARATE.”
+                    </p>
+                    <div class="text-[11px] font-bold text-gold-800 tracking-[0.2em] mt-2 uppercase" data-en="- MATTHEW 19:6" data-ml="- മത്തായി 19:6">- MATTHEW 19:6</div>
+                </div>
+            </div>
+
+            <!-- Groom's Host Parents -->
+            <div class="text-center my-6 space-y-1.5">
+                <h3 class="elegant-title font-bold text-base sm:text-xl text-sepia-900 tracking-wide" data-en="Mrs. Leeliya Abraham and Mr. Saji Mathew" data-ml="ശ്രീമതി ലീലിയ അബ്രഹാം & ശ്രീ സജി മാത്യു">
+                    Mrs. Leeliya Abraham and Mr. Saji Mathew
+                </h3>
+                <p class="font-serif italic text-xs sm:text-sm text-gold-800 font-semibold" data-en="Pullamkunnel, Kariyathumpara" data-ml="പുല്ലാംകുന്നേൽ, കരിയാത്തുംപാറ">
+                    Pullamkunnel, Kariyathumpara
+                </p>
+            </div>
+
+            <p class="text-center text-xs sm:text-sm text-sepia-800 italic my-4 max-w-md mx-auto font-medium leading-relaxed" data-en="We would be delighted for you to join us with family in celebrating the wedding of" data-ml="ഞങ്ങളുടെ മക്കളുടെ വിവാഹച്ചടങ്ങിൽ കുടുംബസമേതം പങ്കുചേർന്ന് ഞങ്ങളെ അനുഗ്രഹിക്കണമെന്ന് സ്നേഹപൂർവ്വം അപേക്ഷിക്കുന്നു">
+                We would be delighted for you to join us with family in celebrating the wedding of
+            </p>
+
+            <!-- Bride & Groom Names -->
+            <div class="text-center my-6 space-y-3">
+                <div class="py-1">
+                    <h1 class="script-font text-5xl sm:text-7xl font-bold text-gold-700 tracking-wide drop-shadow-xs">
+                        Dayanal Thomas
+                    </h1>
+                </div>
+
+                <!-- Doves Graphic -->
+                <div class="flex justify-center items-center my-2">
+                    <svg width="130" height="65" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g transform="translate(35, 15) scale(0.75)">
+                            <path d="M 20 50 C 10 30 30 10 50 20 C 60 10 80 20 70 40 C 90 40 100 60 80 70 C 60 80 40 80 20 50 Z" stroke="#8c6d2d" stroke-width="2.5" fill="#ffffff"/>
+                            <path d="M 45 35 C 30 30 20 40 25 55" stroke="#8c6d2d" stroke-width="1.8" fill="none"/>
+                            <path d="M 50 20 C 40 5 20 15 30 35" stroke="#8c6d2d" stroke-width="2" fill="#fcf8eb"/>
+                        </g>
+                        <g transform="translate(165, 15) scale(-0.75, 0.75)">
+                            <path d="M 20 50 C 10 30 30 10 50 20 C 60 10 80 20 70 40 C 90 40 100 60 80 70 C 60 80 40 80 20 50 Z" stroke="#8c6d2d" stroke-width="2.5" fill="#ffffff"/>
+                            <path d="M 45 35 C 30 30 20 40 25 55" stroke="#8c6d2d" stroke-width="1.8" fill="none"/>
+                            <path d="M 50 20 C 40 5 20 15 30 35" stroke="#8c6d2d" stroke-width="2" fill="#fcf8eb"/>
+                        </g>
+                        <path d="M 85 55 Q 100 45 115 55" stroke="#695120" stroke-width="2.2" fill="none"/>
+                        <path d="M 92 50 C 90 45 95 42 97 48 C 100 42 105 45 102 50 C 106 47 110 52 105 54" stroke="#695120" stroke-width="1.5" fill="#e5cd8d"/>
+                    </svg>
+                </div>
+
+                <div class="py-1">
+                    <h2 class="script-font text-5xl sm:text-7xl font-bold text-gold-700 tracking-wide drop-shadow-xs">
+                        Raina Susan Varghese
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Bride's Parents -->
+            <div class="text-center space-y-1 mb-8">
+                <p class="text-[11px] uppercase tracking-[0.25em] text-gold-800 font-bold mb-1" data-en="daughter of" data-ml="മകൾ">daughter of</p>
+                <p class="elegant-title font-bold text-sm sm:text-base text-sepia-900 tracking-wide" data-en="Mrs. Suma Varghese Mathew and Mr. Roy Varughese Mathew;" data-ml="ശ്രീമതി സുമാ വർഗീസ് മാത്യു & ശ്രീ റോയ് വർഗീസ് മാത്യു;">
+                    Mrs. Suma Varghese Mathew and Mr. Roy Varughese Mathew;
+                </p>
+                <p class="font-serif italic text-xs sm:text-sm text-gold-800 font-semibold" data-en="Thengil Villa, Kodukulanji" data-ml="തങ്ങിൽ വില്ല, കൊടുകുളഞ്ഞി">
+                    Thengil Villa, Kodukulanji
+                </p>
+            </div>
+
+            <!-- LIVE TIME COUNTING (COUNTDOWN TIMER) -->
+            <div class="my-8 text-center bg-gradient-to-b from-white/95 via-gold-50/90 to-white/95 p-6 rounded-2xl border-2 border-gold-300 shadow-md relative overflow-hidden">
+                <div class="flex items-center justify-center gap-2 text-church-purple text-xs font-bold uppercase tracking-[0.25em] mb-3">
+                    <i class="fa-solid fa-hourglass-half text-gold-600 animate-spin"></i>
+                    <span data-en="Countdown to Wedding Ceremony" data-ml="മംഗളമുഹൂർത്തത്തിലേക്കുള്ള സമയം">Countdown to Wedding Ceremony</span>
+                </div>
+
+                <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto text-center">
+                    <div class="bg-white p-3 sm:p-4 rounded-xl shadow-xs border border-gold-300 transform hover:scale-105 transition">
+                        <span id="days" class="elegant-title block text-2xl sm:text-4xl font-bold text-church-purple">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gold-800 font-bold" data-en="Days" data-ml="ദിവസങ്ങൾ">Days</span>
+                    </div>
+                    <div class="bg-white p-3 sm:p-4 rounded-xl shadow-xs border border-gold-300 transform hover:scale-105 transition">
+                        <span id="hours" class="elegant-title block text-2xl sm:text-4xl font-bold text-church-purple">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gold-800 font-bold" data-en="Hours" data-ml="മണിക്കൂർ">Hours</span>
+                    </div>
+                    <div class="bg-white p-3 sm:p-4 rounded-xl shadow-xs border border-gold-300 transform hover:scale-105 transition">
+                        <span id="minutes" class="elegant-title block text-2xl sm:text-4xl font-bold text-church-purple">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gold-800 font-bold" data-en="Mins" data-ml="മിനിറ്റ്">Mins</span>
+                    </div>
+                    <div class="bg-white p-3 sm:p-4 rounded-xl shadow-xs border border-gold-300 transform hover:scale-105 transition">
+                        <span id="seconds" class="elegant-title block text-2xl sm:text-4xl font-bold text-church-purple">00</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gold-800 font-bold" data-en="Secs" data-ml="സെക്കൻഡ്">Secs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Church Venue & Date Box -->
+            <div class="my-8 text-center relative py-6 px-4 rounded-2xl frosted-box shadow-sm">
+                <div class="flex justify-center items-center gap-3 text-gold-600 mb-2">
+                    <span class="h-[1px] w-12 bg-gold-300"></span>
+                    <i class="fa-solid fa-church text-lg text-church-purple"></i>
+                    <span class="h-[1px] w-12 bg-gold-300"></span>
+                </div>
+
+                <h3 class="elegant-title font-bold text-xl sm:text-3xl text-church-purple tracking-wide mb-2" data-en="St. Joseph's Church, Kariyathumpara, Kozhikode" data-ml="സെന്റ് ജോസഫ്സ് ചർച്ച്, കരിയാത്തുംപാറ, കോഴിക്കോട്">
+                    St. Joseph's Church, Kariyathumpara, Kozhikode
+                </h3>
+
+                <p class="elegant-title font-bold text-base sm:text-xl text-sepia-900 mt-3" data-en="on Saturday, the 24th of October 2026" data-ml="2026 ഒക്ടോബർ 24 ശനിയാഴ്ച">
+                    on Saturday, the 24th of October 2026
+                </p>
+                <p class="elegant-title font-bold text-sm sm:text-lg text-gold-800 mt-1" data-en="at 11:00 A.M." data-ml="രാവിലെ 11:00 മണിക്ക്">
+                    at 11:00 A.M.
+                </p>
+                
+                <p class="font-serif italic text-xs sm:text-base text-sepia-800 font-semibold mt-3" data-en="and thereafter for the reception." data-ml="തുടർന്ന് സ്നേഹവിരുന്നിലേക്കും സ്വാഗതം.">
+                    and thereafter for the reception.
+                </p>
+
+                <a href="https://maps.google.com/?q=St.+Joseph's+Church+Kariyathumpara+Kozhikode" target="_blank" class="inline-flex items-center gap-2 mt-5 text-xs font-bold text-gold-900 bg-gold-100 hover:bg-gold-200 px-5 py-2.5 rounded-full transition shadow-xs border border-gold-300">
+                    <i class="fa-solid fa-map-location-dot text-gold-600"></i>
+                    <span data-en="View Church Location on Map" data-ml="പള്ളിയുടെ സ്ഥാനം മാപ്പിൽ കാണുക">View Church Location on Map</span>
+                </a>
+            </div>
+
+            <!-- RSVP Button Section -->
+            <div class="my-8 border-t border-b border-gold-300/70 py-8 text-center bg-gradient-to-r from-transparent via-gold-50/50 to-transparent">
+                <h4 class="elegant-title text-2xl sm:text-3xl font-bold text-sepia-900 mb-2" data-en="Join Our Celebration" data-ml="ഞങ്ങളോടൊപ്പം പങ്കുചേരൂ">Join Our Celebration</h4>
+                <p class="text-xs sm:text-sm text-sepia-800 mb-6 max-w-md mx-auto font-medium" data-en="Your gracious presence and prayers will make our holy union truly blessed." data-ml="നിങ്ങളുടെ സാന്നിധ്യവും പ്രാർത്ഥനയും ഈ സുദിനം കൂടുതൽ ധന്യമാക്കും.">
+                    Your gracious presence and prayers will make our holy union truly blessed.
+                </p>
+                
+                <button onclick="openRsvpModal()" class="bg-gradient-to-r from-gold-700 via-gold-600 to-gold-800 hover:from-gold-800 hover:to-gold-700 text-white font-semibold text-xs sm:text-sm uppercase tracking-widest px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 flex items-center gap-2.5 mx-auto cursor-pointer">
+                    <i class="fa-solid fa-envelope-open-text text-base"></i>
+                    <span data-en="Send RSVP & Best Wishes" data-ml="RSVP & ആശംസകൾ അയക്കുക">Send RSVP & Best Wishes</span>
+                </button>
+            </div>
+
+            <!-- Compliments & Footer (No QR code) -->
+            <div class="text-center mt-6">
+                <div class="flex items-center justify-center gap-2 text-gold-600 mb-1">
+                    <i class="fa-solid fa-heart text-xs text-church-purple"></i>
+                </div>
+                <p class="script-font text-3xl sm:text-4xl text-gold-700 mb-1" data-en="With Best Compliments from" data-ml="സ്നേഹാന്വേഷണങ്ങളോടെ">With Best Compliments from</p>
+                <p class="script-font font-bold text-4xl sm:text-6xl text-sepia-900 tracking-wide">Daliya</p>
+                <div class="flex items-center justify-center gap-2 text-gold-600 mt-2">
+                    <i class="fa-solid fa-heart text-xs text-church-purple"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Interactive RSVP Modal -->
+    <div id="rsvp-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border-2 border-gold-300 relative">
+            <button onclick="closeRsvpModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gold-50 hover:bg-gold-100 flex items-center justify-center text-sepia-800 transition cursor-pointer">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <h3 class="elegant-title text-2xl sm:text-3xl font-bold text-sepia-900 text-center mb-1" data-en="RSVP & Best Wishes" data-ml="RSVP & ആശംസകൾ">RSVP & Best Wishes</h3>
+            <p class="text-xs text-center text-sepia-800 mb-6 font-medium" data-en="Please let us know if you will be celebrating with us!" data-ml="ഈ മനോഹരമായ ചടങ്ങിൽ നിങ്ങൾ പങ്കെടുക്കുന്നുണ്ടോ എന്ന് അറിയിക്കുക!">Please let us know if you will be celebrating with us!</p>
+
+            <form id="rsvp-form" onsubmit="submitRsvp(event)" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia-800 mb-1" data-en="Your Full Name" data-ml="നിങ്ങളുടെ മുഴുവൻ പേര്">Your Full Name</label>
+                    <input type="text" id="guest-name" required class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 bg-gold-50/30 font-medium" placeholder="e.g., Abraham & Family">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia-800 mb-1" data-en="Will you attend?" data-ml="പങ്കെടുക്കുമോ?">Will you attend?</label>
+                    <select id="guest-attendance" class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 bg-gold-50/30 font-medium">
+                        <option value="Joyfully Attending" data-en="Joyfully Attending" data-ml="സന്തോഷത്തോടെ പങ്കെടുക്കും">Joyfully Attending</option>
+                        <option value="Regretfully Unable to Attend" data-en="Regretfully Unable to Attend" data-ml="പങ്കെടുക്കാൻ സാധ്യമല്ല">Regretfully Unable to Attend</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia-800 mb-1" data-en="Number of Guests" data-ml="അതിഥികളുടെ എണ്ണം">Number of Guests</label>
+                    <input type="number" id="guest-count" min="1" max="20" value="1" required class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 bg-gold-50/30 font-medium">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sepia-800 mb-1" data-en="Warm Wishes to the Couple" data-ml="വധൂവരന്മാർക്ക് ആശംസകൾ">Warm Wishes to the Couple</label>
+                    <textarea id="guest-wishes" rows="3" class="w-full px-4 py-3 border border-gold-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 bg-gold-50/30 font-medium" placeholder="Write your blessings..."></textarea>
+                </div>
+                <button type="submit" id="rsvp-submit-btn" class="w-full bg-gradient-to-r from-gold-700 to-gold-800 hover:from-gold-800 hover:to-gold-700 text-white font-semibold text-xs uppercase tracking-widest py-3.5 rounded-xl shadow-lg transition cursor-pointer" data-en="Send Response" data-ml="അയക്കുക">
+                    Send Response
+                </button>
+            </form>
+            
+            <div id="rsvp-success" class="hidden text-center py-10">
+                <div class="text-gold-600 text-5xl mb-3"><i class="fa-solid fa-circle-check"></i></div>
+                <h4 class="elegant-title text-2xl font-bold text-sepia-900" data-en="Thank You!" data-ml="നന്ദി!">Thank You!</h4>
+                <p class="text-xs text-sepia-800 mt-2 font-medium" data-en="Your response and prayers have been successfully received." data-ml="നിങ്ങളുടെ മറുപടിയും ആശംസകളും രേഖപ്പെടുത്തിയിരിക്കുന്നു.">Your response and prayers have been successfully received.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const SHEET_WEBHOOK_URL = "YOUR_APPS_SCRIPT_WEB_APP_URL";
+
+        // Language Switcher Logic
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-en]');
+            elements.forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else if (el.tagName === 'OPTION') {
+                        el.innerText = text;
+                    } else {
+                        el.innerHTML = text;
+                    }
+                }
+            });
+        }
+
+        // Live Countdown Timer to October 24, 2026 at 11:00 AM
+        const weddingDate = new Date("October 24, 2026 11:00:00").getTime();
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div class='col-span-4 elegant-title text-lg font-bold text-gold-800'>The Blessed Wedding Day is Here!</div>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Audio Toggle
+        const audioControl = document.getElementById('audio-control');
+        const bgMusic = document.getElementById('bg-music');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioText = document.getElementById('audio-text');
+        let isPlaying = false;
+
+        audioControl.addEventListener('click', () => {
+            const lang = document.getElementById('language-select').value;
+            if (isPlaying) {
+                bgMusic.pause();
+                audioIcon.className = "fa-solid fa-music text-sm text-gold-600";
+                audioText.innerText = lang === 'ml' ? "സംഗീതം പ്ലേ ചെയ്യുക 🎵" : "Play Music 🎵";
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    audioIcon.className = "fa-solid fa-volume-high text-sm text-gold-700 animate-pulse";
+                    audioText.innerText = lang === 'ml' ? "സംഗീതം പ്ലേ ചെയ്യുന്നു 🎶" : "Playing Music 🎶";
+                    isPlaying = true;
+                }).catch(err => {
+                    console.log("Audio play prevented:", err);
+                    audioText.innerText = lang === 'ml' ? "വീണ്ടും അമർത്തുക 🎵" : "Tap again to play 🎵";
+                });
+            }
+        });
+
+        // RSVP Modal Functions
+        function openRsvpModal() {
+            document.getElementById('rsvp-modal').classList.remove('hidden');
+        }
+        function closeRsvpModal() {
+            document.getElementById('rsvp-modal').classList.add('hidden');
+            document.getElementById('rsvp-form').reset();
+            document.getElementById('rsvp-form').classList.remove('hidden');
+            document.getElementById('rsvp-success').classList.add('hidden');
+        }
+        async function submitRsvp(event) {
+            event.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const attendance = document.getElementById('guest-attendance').value;
+            const count = parseInt(document.getElementById('guest-count').value) || 1;
+            const wishes = document.getElementById('guest-wishes').value;
+
+            const submitBtn = document.getElementById('rsvp-submit-btn');
+            const lang = document.getElementById('language-select').value;
+            submitBtn.innerText = lang === 'ml' ? "അയക്കുന്നു..." : "Sending...";
+            submitBtn.disabled = true;
+
+            if (SHEET_WEBHOOK_URL && !SHEET_WEBHOOK_URL.startsWith("YOUR_")) {
+                try {
+                    await fetch(SHEET_WEBHOOK_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({ name, attendance, count, wishes, timestamp: new Date().toISOString() })
+                    });
+                } catch (e) {
+                    console.error("Sheet save error:", e);
+                }
+            }
+
+            setTimeout(() => {
+                document.getElementById('rsvp-form').classList.add('hidden');
+                document.getElementById('rsvp-success').classList.remove('hidden');
+                setTimeout(() => {
+                    closeRsvpModal();
+                    submitBtn.innerText = lang === 'ml' ? "അയക്കുക" : "Send Response";
+                    submitBtn.disabled = false;
+                }, 2200);
+            }, 600);
+        }
+    </script>
+</body>
+</html>
